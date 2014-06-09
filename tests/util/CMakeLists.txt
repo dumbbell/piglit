@@ -124,7 +124,7 @@ else()
 	)
 endif()
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
 	# One needs to have at least one hardware driver present, otherwise
 	# there is no point compiling just the dispatcher.
 	if(PIGLIT_BUILD_DMA_BUF_TESTS)
@@ -163,6 +163,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		list(APPEND UTIL_GL_LIBS ${WAYLAND_LDFLAGS})
         endif()
 
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
 
 piglit_include_target_api()

@@ -37,7 +37,7 @@ if(X11_FOUND)
 	add_definitions(-DPIGLIT_HAS_X11)
 endif()
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
 	set(PIGLIT_BUILD_GLES_TESTS_DEFAULT ON)
 else()
 	set(PIGLIT_BUILD_GLES_TESTS_DEFAULT OFF)
@@ -53,7 +53,7 @@ if(PIGLIT_BUILD_GL_TESTS)
 	find_package(OpenGL REQUIRED)
 endif()
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
 	option(PIGLIT_USE_WAFFLE "Use Waffle in place of GLUT" ON)
 else()
 	option(PIGLIT_USE_WAFFLE "Use Waffle in place of GLUT" OFF)
@@ -132,7 +132,7 @@ if(PIGLIT_BUILD_CL_TESTS)
 	find_package(OpenCL REQUIRED)
 endif(PIGLIT_BUILD_CL_TESTS)
 
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
 	if(X11_FOUND AND OPENGL_gl_LIBRARY)
 		# Assume the system has GLX. In the future, systems may exist
 		# with libGL and libX11 but no GLX, but that world hasn't
@@ -430,7 +430,7 @@ if(HAVE_LIBCACA)
 endif(HAVE_LIBCACA)
 endif(GBM_FOUND)
 
-if(PIGLIT_USE_WAFFLE AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if(PIGLIT_USE_WAFFLE AND (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD"))
 	pkg_check_modules(EGL egl>=11.0)
 endif()
 
