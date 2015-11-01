@@ -386,7 +386,7 @@ endif()
 
 check_c_source_compiles(
 	"
-	#define _POSIX_C_SOURCE 199309L
+	#define _POSIX_C_SOURCE 200112L
 	#include <time.h>
 	int main() { return clock_gettime(CLOCK_MONOTONIC, NULL); }
 	"
