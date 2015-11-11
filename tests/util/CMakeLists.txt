@@ -13,9 +13,10 @@ set_source_files_properties(
 
 link_libraries(${CMAKE_DL_LIBS})
 
-if(HAVE_LIBCACA)
-    link_libraries(caca)
-endif()
+if(LIBCACA_FOUND)
+	link_libraries(${Libcaca_LIBRARIES})
+	include_directories(${Libcaca_INCLUDE_DIRS})
+endif(LIBCACA_FOUND)
 
 if(HAVE_XKBCOMMON)
 	link_libraries(${XKBCOMMON_LIBRARIES})
